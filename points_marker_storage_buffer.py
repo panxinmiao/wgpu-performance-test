@@ -138,15 +138,15 @@ num_points = 1000 * 1000 * 15
 # vertex_buffer = device.create_buffer(size=vertex_data.nbytes, usage=wgpu.BufferUsage.STORAGE|wgpu.BufferUsage.COPY_DST)
 # device.queue.write_buffer(vertex_buffer, 0, vertex_data.tobytes())
 
-positions_data = np.random.rand(num_points, 4)
-positions_data = positions_data*np.array([2, 2, 0, 0]) - np.array([1, 1, 0, 0])  # scale (x, y) to [-1, 1], [-1, 1]
+positions_data = np.random.rand(num_points, 2)
+positions_data = positions_data*np.array([2, 2]) - np.array([1, 1])  # scale (x, y) to [-1, 1], [-1, 1]
 positions_data = positions_data.astype(np.float32)
 
 positions_buffer = device.create_buffer(size=positions_data.nbytes, usage=wgpu.BufferUsage.STORAGE|wgpu.BufferUsage.COPY_DST)
 device.queue.write_buffer(positions_buffer, 0, positions_data.tobytes())
 
-sizes_data = np.random.rand(num_points, 4)
-sizes_data = sizes_data*np.array([31, 0, 0, 0]) + np.array([1, 0, 0, 0])  # scale (size) to [1, 32]
+sizes_data = np.random.rand(num_points, 1)
+sizes_data = sizes_data*np.array([31]) + np.array([1])  # scale (size) to [1, 32]
 sizes_data = sizes_data.astype(np.float32)
 sizes_buffer = device.create_buffer(size=sizes_data.nbytes, usage=wgpu.BufferUsage.STORAGE|wgpu.BufferUsage.COPY_DST)
 device.queue.write_buffer(sizes_buffer, 0, sizes_data.tobytes())
